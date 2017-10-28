@@ -1,4 +1,4 @@
-class Seg7:
+class Dseg:
     def __init__(self, np, h1, h2, h3, v1, v2, v3, v4):
         self.np = np
         self.bars = [h1, h2, h3, v1, v2, v3, v4]

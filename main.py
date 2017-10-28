@@ -12,7 +12,7 @@ class DigitHandler:
         self.display = Display(Pin(2))
         self.display.set(self.number, self.color)
 
-    def get(self):
+    def get(self, req):
         r, g, b = self.color
         return {'num': self.number, 'r': r, 'g': g, 'b': b}
 
@@ -29,7 +29,7 @@ class DigitHandler:
             b = max(min(int(params['b']), 255), 0)
         self.color = (r, g, b)
         self.display.set(self.number, self.color)
-        return self.get()
+        return self.get(req)
 
 
 server = uhttpd.Server([

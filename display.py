@@ -1,5 +1,5 @@
 from neopixel import NeoPixel
-from seg7 import Seg7
+from dseg import Dseg
 
 
 class Display:
@@ -10,7 +10,7 @@ class Display:
         self.color = (0, 0, 0)
         self.number = 0
 
-        self.digitA = Seg7(
+        self.digitA = Dseg(
             self.np,
             "\x23\x22\x21\x20\x1F\x1E\x10\x0F\x0E\x0D\x0C",
             "\x15\x16\x17\x18\x19\x3E\x3F\x40\x41\x42",
@@ -20,7 +20,7 @@ class Display:
             "\x2A\x2B\x2C\x2D\x2E\x2F\x3A\x3B\x3C\x3D",
             "\x00\x01\x02\x03\x04\x05\x43\x44\x45\x46"
         )
-        self.digitB = Seg7(
+        self.digitB = Dseg(
             self.np,
             "\x60\x61\x62\x63\x64\x65\x66\x67\x68\x69",
             "\x57\x58\x59\x5A\x5B\x84\x85\x86\x87",
@@ -33,5 +33,5 @@ class Display:
 
     def set(self, number, color):
         self.digitA.set(number % 10, color)
-        self.digitB.set(int(number/10) % 10, color)
+        self.digitB.set((number//10) % 10, color)
         self.np.write()
