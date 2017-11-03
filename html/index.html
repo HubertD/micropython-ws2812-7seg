@@ -87,6 +87,7 @@
 	var r = 255;
 	var g = 255;
 	var b = 255;
+	var request = null;
 
 	function update()
 	{
@@ -109,7 +110,12 @@
 
 	function send()
   {
-    var request = new XMLHttpRequest();
+		if (request !== null)
+		{
+		    request.abort();
+		}
+
+    request = new XMLHttpRequest();
     request.open("POST", "/api/set");
     request.setRequestHeader("Content-Type", "application/json");
     request.send(JSON.stringify({"num": number, "r": r, "g": g, "b": b}));
